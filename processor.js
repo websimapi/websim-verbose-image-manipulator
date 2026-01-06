@@ -99,13 +99,29 @@ export class ImageProcessor {
     async crop(x, y, w, h) {
         if (!this.image) throw new Error("No image data present.");
         
-        // Clamp values
-        x = Math.max(0, x);
-        y = Math.max(0, y);
+        // Sanitize inputs
+        // Ensure x,y are within bounds
+        if (x >= this.canvas.width) x = 0;
+        if (y >= this.canvas.height) y = 0;
+        
+        x = Math.max(0, Math.floor(x));
+        y = Math.max(0, Math.floor(y));
+        
+        // Ensure w,h are valid or default to remaining space
+        if (!w || w <= 0) w = this.canvas.width - x;
+        if (!h || h <= 0) h = this.canvas.height - y;
+        
+        // Clamp width/height to available space
         w = Math.min(w, this.canvas.width - x);
         h = Math.min(h, this.canvas.height - y);
-
-        if (w <= 0 || h <= 0) throw new Error("Invalid crop dimensions resulted in zero area.");
+        
+        // If calculation still results in <= 0, reset to full image
+        if (w <= 0 || h <= 0) {
+            console.warn("Invalid crop calculated, resetting to full bounds");
+            x = 0; y = 0;
+            w = this.canvas.width;
+            h = this.canvas.height;
+        }
 
         const img = await this._snapshot();
         
