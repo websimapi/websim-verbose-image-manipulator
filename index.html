@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verbose Image Manipulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="bureaucratic-header">
+            <h1>Automated Graphical Manipulation Interface</h1>
+            <div class="ref-number">REF: VIM-2023-X-99</div>
+        </header>
+
+        <main class="workspace">
+            <div class="canvas-wrapper">
+                <canvas id="mainCanvas"></canvas>
+                <div id="placeholderText" class="placeholder">
+                    [NO GRAPHICAL DATA LOADED]<br>
+                    Please submit a formal request to ingest a file from the local filesystem.
+                </div>
+            </div>
+            
+            <div class="log-output" id="logOutput">
+                <div class="log-entry system">System initialized. Awaiting input.</div>
+                <div class="log-entry system">NOTICE: All commands must be submitted in full, grammatically correct English sentences detailing the precise nature of the requested operation. Brevity will result in request rejection.</div>
+            </div>
+        </main>
+
+        <footer class="command-center">
+            <div class="input-group">
+                <label for="commandInput">COMMAND INPUT TERMINAL:</label>
+                <textarea id="commandInput" placeholder="Enter your detailed request here... (e.g., 'I strictly request that the system rotates the current visual data...')"></textarea>
+                <button id="submitBtn">TRANSMIT REQUEST</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Hidden file input for handling uploads -->
+    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+
+    <script type="module" src="script.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
